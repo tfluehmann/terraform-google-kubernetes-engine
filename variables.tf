@@ -50,6 +50,12 @@ variable "zones" {
   default     = []
 }
 
+variable "enable_l4_ilb_subsetting" {
+  type        = bool
+  description = "Enable the Identity Service component, which allows customers to use external identity providers with the K8S API."
+  default     = false
+}
+
 variable "network" {
   type        = string
   description = "The VPC network to host the cluster in (required)"

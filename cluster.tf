@@ -27,10 +27,10 @@ resource "google_container_cluster" "primary" {
   project         = var.project_id
   resource_labels = var.cluster_resource_labels
 
-  location          = local.location
-  node_locations    = local.node_locations
-  cluster_ipv4_cidr = var.cluster_ipv4_cidr
-  network           = "projects/${local.network_project_id}/global/networks/${var.network}"
+  location                 = local.location
+  node_locations           = local.node_locations
+  cluster_ipv4_cidr        = var.cluster_ipv4_cidr
+  network                  = "projects/${local.network_project_id}/global/networks/${var.network}"
   dynamic "network_policy" {
     for_each = local.cluster_network_policy
 
@@ -136,6 +136,8 @@ resource "google_container_cluster" "primary" {
       evaluation_mode = "PROJECT_SINGLETON_POLICY_ENFORCE"
     }
   }
+
+  enable_l4_ilb_subsetting = var.enable_l4_ilb_subsetting
 
   enable_kubernetes_alpha = var.enable_kubernetes_alpha
 
